@@ -1,14 +1,11 @@
 <ui>
   <menubar name='MenuBar'>
     <menu action='FichierMenu'>
-  
-      <menuitem action='FichierQuitter' />
+        <menuitem action='FichierQuitter' />
     </menu>
     <menu action='AideMenu'>
       <menuitem action='AideApropos'/>
       <menuitem action='AidePlus'/>
-    </menu>
-    
+    </menu>   
   </menubar>
- 
 </ui>

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 ##### Main Gui #####
-import os,signal
+import getpass, os,signal
 from gi.repository import Gtk,GLib,GdkPixbuf
 
 class GuiYoutube(Gtk.Window) :
@@ -17,7 +17,6 @@ class GuiYoutube(Gtk.Window) :
 		# Nos 2 menus à déclarer
 		self.add_fichier_menu_actions(action_group)
 		self.add_aide_menu_actions(action_group)
-		
 
 		self.ui_file = os.getcwd() +"/gui_menu.xml"
 		uimanager = self.create_ui_manager()
@@ -58,35 +57,29 @@ class GuiYoutube(Gtk.Window) :
 		table.attach(label_format,0,1,2,3)
 		table.attach(self.combo,1,2,2,3)
 
-		
-		
 		# Boutton pour choisir la destination
 		
 		destination = Gtk.Button(label="Choisir destination")
 		destination.connect("clicked",self.choix_destination)
 		self.label_destination = Gtk.Entry()  # Créer une méthode qui affiche et qui saisie la destination
-		self.label_destination.set_text("/home/")
+		username = getpass.getuser()
+		self.label_destination.set_text("/home/"+username)
 		table.attach(destination,0,1,3,4)
 		table.attach(self.label_destination,1,2,3,4)
-				
-		
-		
+
 		# Boutton du téléchargement
 		
 		self.telecharger = Gtk.Button(label="Télécharger")
 		self.telecharger.connect("clicked",self.process)
 		table.attach(self.telecharger,0,1,4,5)
-		
-		
-		
+
 		# Boutton pour stopper le téléchargement
 		
 		quit = Gtk.Button(label="Stopper")
 		quit.connect("clicked",self.kill)  # Méthode Kill tue le processus
 		table.attach(quit,1,2,4,5)
 		vbox.pack_start(table,True,True,0)
-		
-		
+
 		# Création d'un TextView
 		self.tw_out = Gtk.TextView()
 		# Création d'une ScrolledWindow
